@@ -36,11 +36,12 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    static getTaskAtSlot({ startTime, endTime }) {
+    static getTaskAtSlot({ startTime, endTime, userID }) {
       return this.findOne({
         where: {
           startTime,
           endTime,
+          userID
         },
       });
     }
@@ -54,7 +55,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
 
-    static async updateTask({ title, id }) {
+    static async updateTask({ title, id, userID }) {
       return this.update(
         {
           title,
@@ -62,6 +63,7 @@ module.exports = (sequelize, DataTypes) => {
         {
           where: {
             id,
+            userID
           },
         }
       );
