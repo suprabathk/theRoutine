@@ -1,5 +1,4 @@
 const express = require("express");
-const { EmptyResultError } = require("sequelize");
 const router = express.Router()
 const { Task, User } = require("../models")
 
@@ -8,6 +7,11 @@ const userID = 1;
 router.get("/", async (req, res) => {
     const allTasks = await Task.getTasks(userID);
     return res.status(200).json(allTasks)
+})
+
+router.get("/:id", async (req, res) => {
+    const task = await Task.getTask({ userID, id: req.params.id })
+    return res.json(task)
 })
 
 router.post("/", async (req, res) => {
@@ -20,27 +24,26 @@ router.post("/", async (req, res) => {
         reservedSlots.push([task.startTime, task.endTime])
     }
     empty = true
-    occupiedBy = null
-    for (let slotNo in reservedSlots) {
-        slot = reservedSlots[slotNo]
+    occupiedBy = 01
+    for (let slot of reservedSlots) {
         if (startTime > endTime) {
             empty = false
-            occupiedBy = slotNo
+            occupiedBy = slot.id
             break
         }
         if ((slot[0] <= startTime) && (startTime < slot[1])) {
             empty = false
-            occupiedBy = slotNo
+            occupiedBy = slot.id
             break
         }
         if ((slot[0] < endTime) && (endTime <= slot[1])) {
             empty = false
-            occupiedBy = slotNo
+            occupiedBy = slot.id
             break
         }
         if (startTime < slot[0] && slot[1] < endTime) {
             empty = false
-            occupiedBy = slotNo
+            occupiedBy = slot.id
             break
         }
     }
