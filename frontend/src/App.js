@@ -1,7 +1,11 @@
+import Calender from "./components/Calender"
+import NavBar from "./components/NavBar";
+
 const App = () => {
   return (
-    <div className="app">
-      <h1>Hello, World!</h1>
+    <div className="">
+      <NavBar />
+      <Calender />
     </div>
   );
 }
