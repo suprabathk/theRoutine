@@ -9,6 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    static getUsers() {
+      return this.findAll()
+    }
+
+    static addUser({ name, email, password }) {
+      return this.create({
+        name,
+        email,
+        password
+      });
+    }
+
     static associate(models) {
       User.hasMany(models.Task, {
         foreignKey: "userID"
