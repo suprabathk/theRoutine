@@ -1,5 +1,4 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
-import meetings from "../db"
 import MeetingList from './MeetingList'
 import {
   add,
@@ -31,7 +30,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Calender = () => {
+const Calender = ({ meetings }) => {
   let today = startOfToday()
   let [selectedDay, setSelectedDay] = useState(today)
   let [currentMonth, setCurrentMonth] = useState(format(today, 'MMM-yyyy'))
@@ -53,7 +52,7 @@ const Calender = () => {
   }
 
   let selectedDayMeetings = meetings.filter((meeting) =>
-    isSameDay(parseISO(meeting.startDatetime), selectedDay)
+    isSameDay(parseISO(meeting.startTime), selectedDay)
   )
 
   return (
@@ -122,7 +121,7 @@ const Calender = () => {
 
                   <div className="w-3 h-1 mx-auto mt-">
                     {meetings.some((meeting) =>
-                      isSameDay(parseISO(meeting.startDatetime), day)
+                      isSameDay(parseISO(meeting.startTime), day)
                     ) && (
                         <div className="w-3 h-1 rounded-sm bg-purple-900"></div>
                       )}

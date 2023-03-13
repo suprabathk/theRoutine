@@ -2,6 +2,7 @@
 import MeetingCard from "./MeetingCard"
 import { PlusIcon } from '@heroicons/react/solid'
 import { format } from "date-fns"
+import { Link } from "react-router-dom"
 
 const MeetingList = ({ selectedDay, selectedDayMeetings }) => {
     return (
@@ -14,10 +15,10 @@ const MeetingList = ({ selectedDay, selectedDayMeetings }) => {
                             {format(selectedDay, 'MMM dd, yyy')}
                         </time>
                     </h2>
-                    <button className="flex gap-2 items-center text-purple-600 font-semibold hover:underline underline-offset-8">
+                    <Link to={`/new/${format(selectedDay, 'yyyy-MM-dd')}`} className="flex gap-2 items-center text-purple-600 font-semibold hover:underline underline-offset-8">
                         <PlusIcon className="w-4 h-4" />
                         New
-                    </button>
+                    </Link>
                 </div>
                 <ol className="mt-4 space-y-1 text-sm leading-6 text-gray-500">
                     {selectedDayMeetings.length > 0 ? (
@@ -27,7 +28,7 @@ const MeetingList = ({ selectedDay, selectedDayMeetings }) => {
                     ) : (
                         <div className="empty-list">
                             <p>No appointments for today.</p>
-                            <a href="#" className="text-purple-500 hover:underline">Create new appointment</a>
+                            <Link to={`/new/${format(selectedDay, 'yyyy-MM-dd')}`} className="text-purple-500 hover:underline">Create new appointment</Link>
                         </div>
                     )}
                 </ol>
