@@ -119,7 +119,7 @@ const Calender = ({ meetings }) => {
                     </time>
                   </button>
 
-                  <div className="w-3 h-1 mx-auto mt-">
+                  <div className="w-3 h-1 mx-auto mt-1">
                     {meetings.some((meeting) =>
                       isSameDay(parseISO(meeting.startTime), day)
                     ) && (
