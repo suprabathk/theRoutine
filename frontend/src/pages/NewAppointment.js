@@ -82,9 +82,9 @@ const NewAppointment = () => {
             <form className="flex flex-col my-8" onSubmit={handleSubmit}>
                 <label htmlFor="title">Title: </label>
                 <input value={title} onChange={(e) => { setTitle(e.target.value) }} required type="text" id="title" className="border border-black hover:border-purple-500 focus:border-purple-500 w-full h-5 px-3 py-5 mb-2 hover:outline-none focus:outline-none focus:ring-purple-500 focus:ring-1 rounded-md text-black " />
-                <label htmlFor="startTime">Author: </label>
+                <label htmlFor="startTime">Start Time: </label>
                 <input value={startTime} onChange={(e) => { setStartTime(e.target.value) }} required type="time" id="startTime" className="border border-black hover:border-purple-500 focus:border-purple-500 w-full h-5 px-3 py-5 mb-2 hover:outline-none focus:outline-none focus:ring-purple-500 focus:ring-1 rounded-md text-black " />
-                <label htmlFor="endTime">Blog: </label>
+                <label htmlFor="endTime">End Time: </label>
                 <input value={endTime} onChange={(e) => { setEndTime(e.target.value) }} required type="time" id="endTime" className="border border-black hover:border-purple-500 focus:border-purple-500 w-full h-5 px-3 py-5 mb-2 hover:outline-none focus:outline-none focus:ring-purple-500 focus:ring-1 rounded-md text-black " />
                 {!isPending && !override && <button className=" text-purple-800 transition-all w-full border border-purple-400 hover:bg-purple-400 hover:text-white py-3 rounded-md mt-6">Add appointment</button>}
                 {override && <button onClick={handleOverride} className=" text-purple-800 transition-all w-full border border-purple-400 hover:bg-purple-400 hover:text-white py-3 rounded-md mt-6">Override appointment</button>}
