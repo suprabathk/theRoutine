@@ -4,7 +4,7 @@ import {
     parseISO
 } from 'date-fns'
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/outline"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const MeetingCard = ({ meeting }) => {
@@ -42,7 +42,7 @@ const MeetingCard = ({ meeting }) => {
                 </div>
             </div>
             <div className="controls md:hidden group-hover:block">
-                <span className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><PencilAltIcon className=' w-4 h-4' />Edit</span>
+                <Link to={`/edit/${meeting.id}`} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><PencilAltIcon className=' w-4 h-4' />Edit</Link>
                 <span onClick={() => { handleDelete(meeting.id) }} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><TrashIcon className=' w-4 h-4' />Delete</span>
             </div>
         </li>
