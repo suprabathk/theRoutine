@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useSignup } from "../hooks/useSignup"
+import { useNavigate } from "react-router";
+
 
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [signup, isPending, error] = useSignup();
+    const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         await signup(name, email, password)
+        navigate("/")
     }
 
     return (

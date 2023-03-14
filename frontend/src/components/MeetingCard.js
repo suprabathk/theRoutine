@@ -33,7 +33,7 @@ const MeetingCard = ({ meeting }) => {
             </div>
             <div className="controls md:hidden group-hover:block">
                 <Link to={`/edit/${meeting.id}`} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><PencilAltIcon className=' w-4 h-4' />Edit</Link>
-                <Link to={`/`} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><TrashIcon className=' w-4 h-4' />Delete</Link>
+                <Link to={`/delete/${meeting.id}`} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><TrashIcon className=' w-4 h-4' />Delete</Link>
             </div>
         </li>
     )

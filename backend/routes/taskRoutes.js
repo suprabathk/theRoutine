@@ -1,7 +1,10 @@
 const express = require("express");
-const router = express.Router()
 const { Task } = require("../models")
+const requireAuth = require("../middleware/requireAuth")
 
+const router = express.Router()
+
+router.use(requireAuth)
 const userID = 1;
 
 router.get("/", async (req, res) => {

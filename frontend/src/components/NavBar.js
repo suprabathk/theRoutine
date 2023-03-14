@@ -22,8 +22,8 @@ const NavBar = () => {
                 )}
                 {!user && (
                     <div className="actions flex gap-6 text-purple-600 font-medium">
-                        <button className="px-3 hover:underline underline-offset-8 transition-all">Sign In</button>
-                        <button className="px-3 hover:underline underline-offset-8 transition-all">Sign Up</button>
+                        <Link to={"/login"} className="px-3 hover:underline underline-offset-8 transition-all">Sign In</Link>
+                        <Link to={"/signup"} className="px-3 hover:underline underline-offset-8 transition-all">Sign Up</Link>
                     </div>
                 )}
             </nav>

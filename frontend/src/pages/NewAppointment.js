@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const NewAppointment = () => {
     const [title, setTitle] = useState('');
@@ -9,12 +10,16 @@ const NewAppointment = () => {
     const [error, setError] = useState(null);
     const [override, setOverride] = useState(false);
     const navigate = useNavigate();
+    const { user } = useAuthContext();
     const { selectedDay } = useParams();
 
     const handleOverride = (e) => {
         e.preventDefault();
         fetch(`http://localhost:8080/api/tasks/${error.id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${user.token}`
+            }
         }).then(() => {
             const startDTime = selectedDay + "T" + startTime + ":00.000Z"
             const endDTime = selectedDay + "T" + endTime + ":00.000Z"
@@ -22,7 +27,11 @@ const NewAppointment = () => {
             setIsPending(true);
             fetch("http://localhost:8080/api/tasks", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${user.token}`
+
+                },
                 body: JSON.stringify(appointment)
             }).then(async (res) => {
                 const result = await res.json()
@@ -52,7 +61,11 @@ const NewAppointment = () => {
         setIsPending(true);
         fetch("http://localhost:8080/api/tasks", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`
+
+            },
             body: JSON.stringify(appointment)
         }).then(async (res) => {
             const result = await res.json()
