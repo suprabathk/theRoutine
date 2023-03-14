@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { useAuthContext } from "./hooks/useAuthContext";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   const { user } = useAuthContext();
@@ -15,7 +16,8 @@ const App = () => {
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={user ? <HomePage /> : <Navigate to={"/login"} />} />
+          <Route path="/" element={user ? <HomePage /> : <Navigate to={"/landing"} />} />
+          <Route path="/landing" element={<LandingPage />} />
           <Route path="/new/:selectedDay" element={user ? <NewAppointment /> : <Navigate to={"/login"} />} />
           <Route path="/edit/:appointmentID" element={user ? <EditAppointment /> : <Navigate to={"/login"} />} />
           <Route path="/delete/:appointmentID" element={user ? <DeleteAppointment /> : <Navigate to={"/login"} />} />
