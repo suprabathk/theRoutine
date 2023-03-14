@@ -25,6 +25,9 @@ router.get("/:id", async (req, res) => {
 })
 
 router.post("/", async (req, res) => {
+    let empty = true
+    let occupiedBy = null
+    let occupiedByName = null
     try {
         const startTime = new Date(req.body.startTime)
         const endTime = new Date(req.body.endTime)
@@ -32,28 +35,26 @@ router.post("/", async (req, res) => {
         const allTasks = await Task.getTasks(userID);
         const reservedSlots = []
         for (let task of allTasks) {
-            reservedSlots.push([task.startTime, task.endTime])
+            reservedSlots.push([task.startTime, task.endTime, task.id])
         }
-        empty = true
-        occupiedBy = 01
+
         if (startTime >= endTime) {
             empty = false
-            occupiedBy = slot.id
         } else {
             for (let slot of reservedSlots) {
                 if ((slot[0] <= startTime) && (startTime < slot[1])) {
                     empty = false
-                    occupiedBy = slot.id
+                    occupiedBy = slot[2]
                     break
                 }
                 if ((slot[0] < endTime) && (endTime <= slot[1])) {
                     empty = false
-                    occupiedBy = slot.id
+                    occupiedBy = slot[2]
                     break
                 }
                 if (startTime < slot[0] && slot[1] < endTime) {
                     empty = false
-                    occupiedBy = slot.id
+                    occupiedBy = slot[2]
                     break
                 }
             }
@@ -67,11 +68,13 @@ router.post("/", async (req, res) => {
             })
             return res.status(200).json({ occupied: false, task: task })
         } else {
-            return res.status(400).json({ occupied: true, occupiedBy: occupiedBy })
+            occupiedByName = await Task.getTask({ userID: 1, id: occupiedBy })
+            return res.status(400).json({ occupied: true, occupiedBy: occupiedBy, occupiedByName: occupiedByName })
         }
     } catch (error) {
         console.log(error);
-        return res.status(400).json({ error })
+        occupiedByName = await Task.getTask({ userID: 1, id: occupiedBy })
+        return res.status(400).json({ occupied: true, occupiedBy: occupiedBy, occupiedByName: occupiedByName })
     }
 })
 
