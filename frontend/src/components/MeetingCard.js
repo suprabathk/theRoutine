@@ -4,18 +4,10 @@ import {
     parseISO
 } from 'date-fns'
 import { PencilAltIcon, TrashIcon, ClockIcon } from "@heroicons/react/outline"
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const MeetingCard = ({ meeting }) => {
-    const navigate = useNavigate();
-    const handleDelete = () => {
-        fetch(`http://localhost:8080/api/tasks/${meeting.id}`, {
-            method: "DELETE"
-        }).then(() => {
-            navigate("/");
-        });
-    }
 
     let startDateTime = parseISO(meeting.startTime)
     let endDateTime = parseISO(meeting.endTime)
@@ -41,7 +33,7 @@ const MeetingCard = ({ meeting }) => {
             </div>
             <div className="controls md:hidden group-hover:block">
                 <Link to={`/edit/${meeting.id}`} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><PencilAltIcon className=' w-4 h-4' />Edit</Link>
-                <span onClick={() => { handleDelete(meeting.id) }} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><TrashIcon className=' w-4 h-4' />Delete</span>
+                <Link to={`/`} className='flex items-center gap-2 hover:text-purple-900 transition-all cursor-pointer'><TrashIcon className=' w-4 h-4' />Delete</Link>
             </div>
         </li>
     )

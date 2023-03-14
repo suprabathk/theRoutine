@@ -27,7 +27,12 @@ const EditAppointment = () => {
             <form className="flex flex-col my-8" onSubmit={handleSubmit}>
                 <label htmlFor="title">Enter new title: </label>
                 <input value={title} onChange={(e) => { setTitle(e.target.value) }} required type="text" id="title" className="border border-black hover:border-purple-500 focus:border-purple-500 w-full h-5 px-3 py-5 mb-2 hover:outline-none focus:outline-none focus:ring-purple-500 focus:ring-1 rounded-md text-black " />
-                {!isPending && <button className=" text-purple-800 transition-all w-full border border-purple-400 hover:bg-purple-400 hover:text-white py-3 rounded-md mt-6">Edit appointment</button>}
+                {!isPending && (
+                    <div className="flex gap-2">
+                        <button onClick={() => { navigate("/") }} className=" text-purple-800 transition-all w-full border border-purple-400 hover:bg-purple-400 bg-purple-200 hover:text-white py-3 rounded-md mt-6">Cancel</button>
+                        <button className=" hover:text-purple-800 transition-all w-full border border-purple-400 hover:bg-purple-200 bg-purple-400 text-white py-3 rounded-md mt-6">Edit appointment</button>
+                    </div>
+                )}
                 {isPending && <button disabled className="transition-all w-full border border-purple-400 bg-purple-400 cursor-not-allowed text-white py-3 rounded-md mt-6">Updating appointment...</button>}
             </form>
         </div>

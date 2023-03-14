@@ -27,7 +27,7 @@ const MeetingList = ({ selectedDay, selectedDayMeetings }) => {
                         ))
                     ) : (
                         <div className="empty-list">
-                            <p>No appointments for today.</p>
+                            <p>No appointments are scheduled.</p>
                             <Link to={`/new/${format(selectedDay, 'yyyy-MM-dd')}`} className="text-purple-500 hover:underline">Create new appointment</Link>
                         </div>
                     )}
