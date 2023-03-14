@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       return this.findAll()
     }
 
+    static getUser(email) {
+      return this.findOne({
+        where: {
+          email
+        }
+      })
+    }
+
     static addUser({ name, email, password }) {
       return this.create({
         name,
