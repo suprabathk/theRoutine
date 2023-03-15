@@ -87,7 +87,7 @@ const NewAppointment = () => {
     }
 
     return (
-        <div className="create mx-80 my-4">
+        <div className="create lg:mx-80 md:mx-40 sm:mx-20 mx-10 my-4">
             <h2 className="text-3xl font-semibold mb-4">Create new appointment for {selectedDay}</h2>
             {error && !override && <div className="my-2 w-full bg-purple-200 rounded-md px-2 py-1 text-purple-900 border border-purple-900 ">{error}</div>}
             {error && override && <div className="my-2 w-full bg-purple-200 rounded-md px-2 py-1 text-purple-900 border border-purple-900 ">The slot is already occupied by "{error.title}" <br /> from {new Date(error.startTime).toUTCString()} to {new Date(error.endTime).toUTCString()}</div>}

@@ -30,7 +30,7 @@ const DeleteAppointment = () => {
 
 
     return (
-        <div className="delete mx-80 my-4">
+        <div className="delete lg:mx-80 md:mx-40 sm:mx-20 mx-10 my-4">
             <h2 className="text-3xl font-semibold mb-4">Are you sure you want to delete this appointment?</h2>
             <p className="text-purple-900">This action cannot be undone!</p>
             {error && <div className="my-2 w-full bg-purple-200 rounded-md px-2 py-1 text-purple-900 border border-purple-900 ">{error}</div>}
