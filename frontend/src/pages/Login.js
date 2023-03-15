@@ -17,7 +17,7 @@ const Login = () => {
     }
 
     return (
-        <div className="create mx-80 my-4">
+        <div className="create lg:mx-80 md:mx-40 sm:mx-20 mx-10 my-4">
             <h2 className="text-3xl font-semibold mb-4">Login to your account</h2>
             {error && <div className="my-2 w-full bg-purple-200 rounded-md px-2 py-1 text-purple-900 border border-purple-900 ">{error}</div>}
             <form onSubmit={handleSubmit} className="flex flex-col my-8">
