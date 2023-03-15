@@ -78,7 +78,7 @@ const NewAppointment = () => {
                     setError(result.occupiedByName)
                 } else {
                     setOverride(false)
-                    setError("The start and end time cannot be same")
+                    setError("The start time cannot be same or greater than end time")
                 }
             }
         }).catch((err) => {
