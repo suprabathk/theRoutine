@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
 export const useSignup = () => {
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(null);
+    const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
     const { dispatch } = useAuthContext();
 
     const signup = async (name, email, password) => {
         setIsLoading(true);
-        setError(null);
+        setError(false);
 
         const response = await fetch('https://theroutine.onrender.com/api/users/signup', {
             method: "POST",
@@ -16,16 +17,19 @@ export const useSignup = () => {
             body: JSON.stringify({ name, email, password })
         })
         const jsonRes = await response.json()
+        console.log("sdasdas", jsonRes.error);
 
-        if (!response.ok) {
+        if (jsonRes.error) {
+            setSuccess(false);
             setIsLoading(false);
-            setError(jsonRes.error)
+            setError(jsonRes.error);
         } else {
             localStorage.setItem("user", JSON.stringify(jsonRes))
             dispatch({ type: "LOGIN", payload: jsonRes })
+            setSuccess(true)
+            setError(false)
             setIsLoading(false);
         }
     }
-
-    return [signup, isLoading, error];
+    return [signup, isLoading, error, success];
 }

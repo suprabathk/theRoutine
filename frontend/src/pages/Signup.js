@@ -7,14 +7,16 @@ const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [signup, isPending, error] = useSignup();
+    const [signup, isPending, error, success] = useSignup();
     const navigate = useNavigate();
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         await signup(name, email, password)
-        navigate("/")
+        if (success) {
+            navigate("/")
+        }
     }
 
     return (
