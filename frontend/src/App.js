@@ -17,7 +17,7 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={user ? <HomePage /> : <Navigate to={"/landing"} />} />
-          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/landing" element={!user ? <LandingPage /> : <Navigate to={"/"} />} />
           <Route path="/new/:selectedDay" element={user ? <NewAppointment /> : <Navigate to={"/login"} />} />
           <Route path="/edit/:appointmentID" element={user ? <EditAppointment /> : <Navigate to={"/login"} />} />
           <Route path="/delete/:appointmentID" element={user ? <DeleteAppointment /> : <Navigate to={"/login"} />} />

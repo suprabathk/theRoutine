@@ -27,7 +27,7 @@ router.post("/login", async (req, res) => {
             return res.status(400).json({ error: "Invalid password" });
         }
         const token = createToken(user.id)
-        return res.status(200).json({ email: req.body.email, token })
+        return res.status(200).json({ email: req.body.email, name: user.name, token })
     } catch (error) {
         console.log(error);
         return res.status(400).json({ error: error.message })
@@ -50,7 +50,7 @@ router.post("/signup", async (req, res) => {
             password: hashedPass
         });
         const token = createToken(user.id)
-        return res.status(200).json({ email: req.body.email, token })
+        return res.status(200).json({ email: req.body.email, name: req.body.name, token })
     } catch (error) {
         console.log(error);
         return res.status(400).json({ error: "Email ID is already in use" })

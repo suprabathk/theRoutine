@@ -17,7 +17,8 @@ const NavBar = () => {
             <nav>
                 {user && (
                     <div className="actions flex gap-6 text-purple-600 font-medium">
-                        <button onClick={handleClick} className="px-3 hover:underline underline-offset-8 transition-all">Sign out - {user.email}</button>
+                        <button onClick={handleClick} className="hidden md:block px-3 hover:underline underline-offset-8 transition-all">Sign out - {user.email}</button>
+                        <button onClick={handleClick} className="md:hidden px-3 hover:underline underline-offset-8 transition-all">Sign out</button>
                     </div>
                 )}
                 {!user && (
