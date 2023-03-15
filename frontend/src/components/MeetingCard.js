@@ -8,9 +8,19 @@ import { Link } from "react-router-dom";
 
 
 const MeetingCard = ({ meeting }) => {
+    const adjustForUTCOffset = date => {
+        return new Date(
+            date.getUTCFullYear(),
+            date.getUTCMonth(),
+            date.getUTCDate(),
+            date.getUTCHours(),
+            date.getUTCMinutes(),
+            date.getUTCSeconds(),
+        );
+    };
 
-    let startDateTime = parseISO(meeting.startTime)
-    let endDateTime = parseISO(meeting.endTime)
+    let startDateTime = adjustForUTCOffset(parseISO(meeting.startTime))
+    let endDateTime = adjustForUTCOffset(parseISO(meeting.endTime))
 
     return (
         <li className="flex items-center px-4 py-2 space-x-4 group rounded-xl focus-within:bg-gray-100 hover:bg-gray-200 justify-between">

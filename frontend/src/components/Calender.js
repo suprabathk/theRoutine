@@ -16,6 +16,17 @@ import {
 } from 'date-fns'
 import { useState } from 'react'
 
+const adjustForUTCOffset = date => {
+  return new Date(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds(),
+  );
+};
+
 let colStartClasses = [
   '',
   'col-start-2',
@@ -52,7 +63,7 @@ const Calender = ({ meetings }) => {
   }
 
   let selectedDayMeetings = meetings.filter((meeting) =>
-    isSameDay(parseISO(meeting.startTime), selectedDay)
+    isSameDay(adjustForUTCOffset(parseISO(meeting.startTime)), selectedDay)
   )
 
   return (
@@ -121,7 +132,7 @@ const Calender = ({ meetings }) => {
 
                   <div className="w-3 h-1 mx-auto mt-1">
                     {meetings.some((meeting) =>
-                      isSameDay(parseISO(meeting.startTime), day)
+                      isSameDay(adjustForUTCOffset(parseISO(meeting.startTime)), day)
                     ) && (
                         <div className="w-3 h-1 rounded-sm bg-purple-900"></div>
                       )}
