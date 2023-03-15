@@ -2,7 +2,7 @@ import Calender from "../components/Calender"
 import useFetch from '../hooks/useFetch'
 
 const HomePage = () => {
-    const [meetings, isPending, error] = useFetch("http://localhost:8080/api/tasks")
+    const [meetings, isPending, error] = useFetch("https://theroutine.onrender.com/api/tasks")
 
     return (
         <div className="app">

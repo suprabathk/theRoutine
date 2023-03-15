@@ -14,7 +14,7 @@ const DeleteAppointment = () => {
             setError("You must be logged in")
             return
         }
-        fetch(`http://localhost:8080/api/tasks/${appointmentID}`, {
+        fetch(`https://theroutine.onrender.com/api/tasks/${appointmentID}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${user.token}`
